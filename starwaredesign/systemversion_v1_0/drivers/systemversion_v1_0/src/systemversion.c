@@ -116,7 +116,6 @@ u32 SystemVersion_GetFpgaVersionBuild(u32 BaseAddress)
 	RegValue = SystemVersion_ReadReg(BaseAddress, 
 		(u32)SYSTEMVERSION_FPGA_VERSION_OFFSET);
 
-	return (RegValue & SYSTEMVERSION_FPGA_VERSION_BUILD_MASK) >> 
-		SYSTEMVERSION_FPGA_VERSION_BUILD_OFFSET;
+	return RegValue;
 }
 
