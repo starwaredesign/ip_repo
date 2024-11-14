@@ -693,7 +693,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_VER_BUILD</spirit:name>
         <spirit:displayName>C Ver Build</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_VER_BUILD">0</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_VER_BUILD" spirit:bitStringLength="32">0</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_BOARD_TYPE_WIDTH</spirit:name>
