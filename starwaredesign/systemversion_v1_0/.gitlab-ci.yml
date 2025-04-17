@@ -9,6 +9,9 @@ test:
   script:
     - cd sim && pytest -s -v  --log-level=INFO && cd ..
   artifacts:
+    when: always
     paths:
       - sim/sim_build/*.None 
+    reports:
+      junit: sim/sim_build/*.None
 
