@@ -1,0 +1,14 @@
+test:
+  variables:
+    GIT_STRATEGY: clone
+    FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: "true"
+    GIT_SUBMODULE_STRATEGY: recursive
+  image: xilinx:2024.1
+  tags:
+    - xilinx
+  script:
+    - cd sim && pytest -s -v  --log-level=INFO && cd ..
+  artifacts:
+    paths:
+      - sim/sim_build/*.None 
+
