@@ -29,6 +29,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
+`timescale 1ns/1ns
 
 module systemversion #(
   // Parameters of Axi Slave Bus Interface S_AXI
@@ -110,6 +111,30 @@ wire [ C_BOARD_REV_WIDTH-1:0]     board_rev_sync ;
 // Since the board type/rev signals are static, xpm_cdc_array_single can
 // be used
 
+`ifdef SIM
+reg [C_BOARD_TYPE_WIDTH-1:0]     board_type_d1;
+reg [C_BOARD_TYPE_WIDTH-1:0]     board_type_d2;
+reg [ C_BOARD_REV_WIDTH-1:0]     board_rev_d1 ;
+reg [ C_BOARD_REV_WIDTH-1:0]     board_rev_d2 ;
+
+always @(posedge s_axi_aclk or negedge s_axi_aresetn)
+begin
+  if (s_axi_aresetn == 1'b0) begin
+    board_type_d1 <= 'b0;
+    board_type_d2 <= 'b0;
+    board_rev_d1  <= 'b0;
+    board_rev_d2  <= 'b0;
+  end else begin
+    board_type_d1 <= board_type;
+    board_type_d2 <= board_type_d1;
+    board_rev_d1  <= board_rev;
+    board_rev_d2  <= board_rev_d1;
+  end
+end
+
+assign board_type_sync = board_type_d2;
+assign board_rev_sync = board_rev_d2;
+`else
 xpm_cdc_array_single #(
   .DEST_SYNC_FF  (2                 ),
   .SIM_ASSERT_CHK(0                 ),
@@ -133,6 +158,7 @@ xpm_cdc_array_single #(
   .dest_clk(s_axi_aclk    ),
   .dest_out(board_rev_sync)
 );
+`endif
 
 assign board_reg[(C_S_AXI_DATA_WIDTH/2)+:(C_S_AXI_DATA_WIDTH/2)] = board_type_sync;
 assign board_reg[0+:(C_S_AXI_DATA_WIDTH/2)] = board_rev_sync;
