@@ -7,8 +7,9 @@ test:
   tags:
     - xilinx
   script:
-    - cat ~/.bashrc
-    - source ~/.bashrc && cd $IP_PATH/sim && pytest -s -v  --log-level=INFO && cd ..
+    - source ~/.profile
+    - env
+    - cd $IP_PATH/sim && pytest -s -v  --log-level=INFO && cd ..
   artifacts:
     when: always
     paths:
