@@ -1,4 +1,5 @@
 test:
+  stage: test_ip
   variables:
     GIT_STRATEGY: clone
     FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: "true"
