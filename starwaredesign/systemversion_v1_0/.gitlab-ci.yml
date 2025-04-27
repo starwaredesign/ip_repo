@@ -7,8 +7,7 @@ test:
   tags:
     - xilinx
   script:
-    - source ~/.profile
-    - env
+    - source ~/.profile && env
     - cd $IP_PATH/sim && pytest -s -v  --log-level=INFO && cd ..
   artifacts:
     when: always
