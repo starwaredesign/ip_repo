@@ -7,9 +7,7 @@ test:
   tags:
     - xilinx
   script:
-    - echo $PATH
-    - whoami
-    - export PATH=$PATH:~/.local/bin && cd $IP_PATH/sim && pytest -s -v  --log-level=INFO && cd ..
+    - source ~/.bashrc && cd $IP_PATH/sim && pytest -s -v  --log-level=INFO && cd ..
   artifacts:
     when: always
     paths:
