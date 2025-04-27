@@ -7,11 +7,11 @@ test:
   tags:
     - xilinx
   script:
-    - cd sim && pytest -s -v  --log-level=INFO && cd ..
+    - cd $IP_PATH/sim && pytest -s -v  --log-level=INFO && cd ..
   artifacts:
     when: always
     paths:
-      - sim/sim_build/*.None 
+      - $IP_PATH/sim/sim_build/*.None 
     reports:
-      junit: sim/sim_build/*.None
+      junit: $IP_PATH/sim/sim_build/*.None
 
