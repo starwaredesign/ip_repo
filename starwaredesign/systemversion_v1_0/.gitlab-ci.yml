@@ -8,7 +8,8 @@ test:
     - xilinx
   script:
     - echo $PATH
-    - cd $IP_PATH/sim && pytest -s -v  --log-level=INFO && cd ..
+    - whoami
+    - export PATH=$PATH:~/.local/bin && cd $IP_PATH/sim && pytest -s -v  --log-level=INFO && cd ..
   artifacts:
     when: always
     paths:
